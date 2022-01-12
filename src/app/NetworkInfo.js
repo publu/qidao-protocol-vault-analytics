@@ -35,9 +35,9 @@ const NetworkInfo = ({ networkData }) => {
   }, [active, isConnected])  
   
   return (
-    <div>
-        <div>{name}</div>
-        <div>{hubBalance}</div>
+    <div className="w-100 pa3 mb2 br4 ba b--white-40">
+        <div className="mb2">{name}</div>
+        <div>Hub balance: {hubBalance}</div>
     </div>
   )
 }

@@ -32,8 +32,11 @@ function App() {
   return (
       <div className="App">
         <header className="App-header">
+          <title></title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css" />
         </header>
-        <div>
+        <div className="flex pa4 w-100">
           <NetworkList />
         </div>
       </div>

@@ -12,18 +12,18 @@ const NetworkList = () => {
   }
 
   return (
-    <>
-      {networkData.map((network) => {
+    <div className="flex flex-wrap w-100">
+      {networkData.map((network, key) => {
           function getLibrary(provider, _) {
             return new ethers.providers.JsonRpcProvider(network.rpcUrl);
           }
           return (
-            <Web3ReactProvider getLibrary={getLibrary}>
+            <Web3ReactProvider key={key} getLibrary={getLibrary}>
               <NetworkInfo networkData={network} />
             </Web3ReactProvider>        
           )
       })}
-    </>
+    </div>
   )
 }
 
