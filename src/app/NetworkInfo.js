@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useWeb3React, Web3ReactProvider } from '@web3-react/core';
+import { useWeb3React } from '@web3-react/core';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { ethers } from "ethers";
-import hubAbi from "../hubAbi.json";
 import maiAbi from "../maiAbi.json";
 import { formatAmount } from "./utils/utils";
 const injected = new InjectedConnector();
 
 const NetworkInfo = ({ networkData }) => {
-  const { active, account, library, activate} = useWeb3React();
+  const { active, library, activate} = useWeb3React();
   const { hub, mai, name } = networkData;
   const [hubBalance, setBalance] = useState("0");
   const [isConnected, connectStatus] = useState(false);
