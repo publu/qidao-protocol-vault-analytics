@@ -1,4 +1,4 @@
-import {ChainId} from './Chains'
+import { ChainId } from './Chains'
 
 export interface AddressData {
     hub: string
