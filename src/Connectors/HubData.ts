@@ -7,6 +7,7 @@ export interface AddressData {
 }
 
 export const MaiAddresses: { [key: number]: string } = {
+    0: '9mWRABuz2x6koTPCWiCPM49WUbcrNqGTHBV9T9k7y1o7', //SOL
     25: '0x2Ae35c8E3D4bD57e8898FF7cd2bBff87166EF8cb',
     56: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
     137: '0xa3fa99a148fa48d14ed51d610c367c61876997f1',
