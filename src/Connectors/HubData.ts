@@ -49,6 +49,11 @@ export const hubData: AddressData[] = [
 
 export const anySwapData: AddressData[] = [
     {
+        hub: '0xa3fa99a148fa48d14ed51d610c367c61876997f1',
+        name: 'Polygon',
+        chainId: ChainId.MATIC,
+    },
+    {
         hub: '0xC931f61B1534EB21D8c11B24f3f5Ab2471d4aB50',
         name: 'Cronos',
         chainId: ChainId.CRONOS,

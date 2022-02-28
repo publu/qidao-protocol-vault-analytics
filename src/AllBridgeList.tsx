@@ -15,7 +15,6 @@ export const AllBridgeChainList = ({ logo }: { logo?: any }) => {
             <div className="flex h-28 text-blue">
                 <img className="mx-auto my-auto max-h-full max-w-full" src={logo} alt="Router Liquidity Logo" />
             </div>
-            <AllBridgeInfo />
             <NetworkInfo
                 networkData={{
                     hub: '0xBBbD1BbB4f9b936C3604906D7592A644071dE884',
@@ -24,6 +23,7 @@ export const AllBridgeChainList = ({ logo }: { logo?: any }) => {
                 }}
                 connector={connector}
             />
+            <AllBridgeInfo />
         </div>
     )
 }
