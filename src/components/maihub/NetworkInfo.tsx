@@ -80,9 +80,9 @@ export const NetworkInfo = ({
             <div className="min-w-100 block rounded-lg bg-white p-6 shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-dm-tertiary dark:hover:bg-gray-700">
                 <div className="flex place-content-evenly text-gray-700 dark:text-gray-400">
                     {chainIcon ? (
-                        <img className="h-8 w-8 rounded" src={chainIcon} alt={`${chainName} Icon`} title={`${chainName} Icon`} />
+                        <img className="my-auto h-8 w-8 rounded" src={chainIcon} alt={`${chainName} Icon`} title={`${chainName} Icon`} />
                     ) : (
-                        <p className="font-bold tracking-tight dark:text-white">{name}</p>
+                        <p className="my-auto font-bold tracking-tight dark:text-white">{name}</p>
                     )}
                     <div className="mr-auto">
                         <div className="ml-auto flex items-center pl-4">
