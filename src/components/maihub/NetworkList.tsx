@@ -2,8 +2,8 @@ import React from 'react'
 import { NetworkInfo } from './NetworkInfo'
 import { initializeConnector } from '@web3-react/core'
 import { Network } from '@web3-react/network'
-import { URLS } from './Connectors/Chains'
-import { AddressData } from './Connectors/HubData'
+import { URLS } from '../../Connectors/Chains'
+import { AddressData } from '../../Connectors/HubData'
 
 const NetworkList = ({ networkData, logo }: { networkData: AddressData[]; logo?: any }) => {
     return (

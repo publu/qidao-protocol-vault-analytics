@@ -2,6 +2,8 @@ import { ChainId } from './Chains'
 
 export interface AddressData {
     hub: string
+    celarToken?: string
+    relayChainToken?: string
     name: string
     chainId: number
 }
@@ -26,22 +28,27 @@ export const MaiAddresses: { [key: number]: string } = {
 export const hubData: AddressData[] = [
     {
         hub: '0xF5c2B1b92456FE1B1208C63D8eA040D464f74a72',
+        relayChainToken: '0x1c965D8E53fb1a448789e2B0FA5abc3EB2c36993',
         name: 'Cronos',
         chainId: ChainId.CRONOS,
     },
     {
         hub: '0xcA8a932e5aA63961D975aFA005d34Ef73C59bb45',
+        relayChainToken: '0x7f5a79576620C046a293F54FFCdbd8f2468174F1',
         name: 'MoonRiver',
         chainId: ChainId.MOONRIVER,
     },
     {
         hub: '0xbE56bFF41AD57971DEDfBa69f88b1d085E349d47',
         name: 'Avalanche',
+        celarToken: '0x61f85fF2a2f4289Be4bb9B72Fc7010B3142B5f41',
+        relayChainToken: '0x3B55E45fD6bd7d4724F5c47E0d1bCaEdd059263e',
         chainId: ChainId.AVALANCHE,
     },
 
     {
         hub: '0xC85C1ce70C4Bf751a73793D735e9D0209152F13d',
+        celarToken: '0x6fa10d3052372118e976948184abacab569209ee',
         name: 'Harmony',
         chainId: ChainId.HARMONY,
     },

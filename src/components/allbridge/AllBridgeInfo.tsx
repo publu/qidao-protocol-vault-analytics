@@ -4,12 +4,11 @@ import { AccountLayout, getMint, TOKEN_PROGRAM_ID } from '@solana/spl-token'
 import React, { useState } from 'react'
 import { Buffer } from 'buffer'
 import useAsyncEffect from 'use-async-effect'
-import { MaiAddresses } from './Connectors/HubData'
-import SolanaChainLogo from './imgs/logos/chains/solana-networkk.svg'
-
-//Monkey patch via https://github.com/solana-labs/wallet-adapter/issues/35#issuecomment-908484829
-import MaiLogo from './imgs/logos/mimatic-red.png'
+import { MaiAddresses } from '../../Connectors/HubData'
+import SolanaChainLogo from '../../imgs/logos/chains/solana-networkk.svg'
+import MaiLogo from '../../imgs/logos/mimatic-red.png'
 ;(window as any).global = window
+//Monkey patch via https://github.com/solana-labs/wallet-adapter/issues/35#issuecomment-908484829
 global.Buffer = global.Buffer || Buffer
 ;(window as any).process = {
     version: '',
