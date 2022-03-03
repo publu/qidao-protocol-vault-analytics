@@ -1,7 +1,7 @@
 import { initializeConnector } from '@web3-react/core'
 import { Network } from '@web3-react/network'
 import { ChainId, URLS } from '../../Connectors/Chains'
-import { NetworkInfo } from '../maihub/NetworkInfo'
+import { NetworkInfo } from '../Network/NetworkInfo'
 import React from 'react'
 import AllBridgeInfo from './AllBridgeInfo'
 
@@ -17,7 +17,7 @@ export const AllBridgeChainList = ({ logo }: { logo?: any }) => {
             </div>
             <NetworkInfo
                 networkData={{
-                    hub: '0xBBbD1BbB4f9b936C3604906D7592A644071dE884',
+                    contractAddress: '0xBBbD1BbB4f9b936C3604906D7592A644071dE884',
                     name: 'Polygon',
                     chainId: ChainId.MATIC,
                 }}

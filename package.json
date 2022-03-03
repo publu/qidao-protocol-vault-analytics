@@ -6,14 +6,17 @@
         "@tailwindcss/aspect-ratio": "^0.4.0",
         "@tailwindcss/forms": "^0.4.0",
         "@tailwindcss/line-clamp": "^0.3.1",
+        "@typechain/ethers-v5": "^9.0.0",
         "autoprefixer": "^10.4.2",
         "postcss": "^8.4.7",
         "prettier": "^2.5.1",
         "prettier-plugin-tailwindcss": "^0.1.8",
+        "serve": "^13.0.2",
         "tailwindcss": "^3.0.23",
-        "serve": "^13.0.2"
+        "typechain": "^7.0.0"
     },
     "dependencies": {
+        "@ethersproject/providers": "^5.5.3",
         "@solana/spl-token": "^0.2.0",
         "@solana/web3.js": "^1.35.1",
         "@testing-library/jest-dom": "^5.16.2",
@@ -26,6 +29,7 @@
         "@web3-react/core": "^8.0.12-beta.0",
         "@web3-react/metamask": "^8.0.8-beta.0",
         "@web3-react/network": "^8.0.8-beta.0",
+        "ethers": "^5.5.4",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-scripts": "5.0.0",
@@ -37,6 +41,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "postinstall": "typechain --target ethers-v5 --out-dir src/contracts \"src/abis/**/*.json\"",
         "serve": "serve -s build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
@@ -58,5 +63,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "installConfig": {
+        "hoistingLimits": "workspaces"
     }
 }
