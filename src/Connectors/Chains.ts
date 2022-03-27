@@ -12,6 +12,7 @@ import metisNetworkIcon from '../imgs/logos/chains/metis-network.png'
 import iotexNetworkIcon from '../imgs/logos/chains/iotex-network.png'
 import celoNetworkIcon from '../imgs/logos/chains/celo-network.png'
 import auroraNetworkIcon from '../imgs/logos/chains/aurora-network.png'
+import fantomNetworkIcon from '../imgs/logos/chains/fantom-network.jpg'
 
 const ETH: AddEthereumChainParameter['nativeCurrency'] = {
     name: 'Ether',
@@ -75,6 +76,12 @@ const IOTX: AddEthereumChainParameter['nativeCurrency'] = {
 const CELO: AddEthereumChainParameter['nativeCurrency'] = {
     name: 'Celo',
     symbol: 'CELO',
+    decimals: 18,
+}
+
+const FTM: AddEthereumChainParameter['nativeCurrency'] = {
+    name: 'Fantom',
+    symbol: 'FTM',
     decimals: 18,
 }
 
@@ -170,6 +177,13 @@ export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainI
         nativeCurrency: MATIC,
         blockExplorerUrls: ['https://polygonscan.com'],
         iconUrls: [polygonNetworkIcon],
+    },
+    250: {
+        urls: ['https://rpc.ftm.tools/'],
+        name: 'Fantom',
+        nativeCurrency: FTM,
+        blockExplorerUrls: ['https://ftmscan.com/'],
+        iconUrls: [fantomNetworkIcon]
     },
     288: {
         urls: ['https://mainnet.boba.network'],

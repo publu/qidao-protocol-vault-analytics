@@ -10,7 +10,7 @@ module.exports = {
             md: '768px',
             lg: '976px',
             lr: '1400px',
-            xl: '1440px',
+            xl: '2000px',
         },
         fontSize: {
             ...defaultTheme.fontSize,
