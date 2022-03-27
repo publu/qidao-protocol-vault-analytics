@@ -20,6 +20,7 @@ export interface HubData extends AddressData {
 }
 
 export interface EndblockData extends AddressData {
+    countdownAddress: string,
     factory: any
 }
 
@@ -140,48 +141,56 @@ export const anySwapData: AddressData[] = [
 export const endblockData: EndblockData[] = [
     {
         contractAddress: '0x574Fe4E8120C4Da1741b5Fd45584de7A5b521F0F',
+        countdownAddress: 'https://polygonscan.com/block/countdown',
         name: 'Polygon',
         chainId: ChainId.MATIC,
         factory: Matic574__factory
     },
     {
         contractAddress: '0x07Ca17Da3B54683f004d388F206269eF128C2356',
+        countdownAddress: 'https://polygonscan.com/block/countdown',
         name: 'Polygon',
         chainId: ChainId.MATIC,
         factory: Matic07C__factory
     },
     {
         contractAddress: '0x0635AF5ab29Fc7bbA007B8cebAD27b7A3d3D1958',
+        countdownAddress: 'https://polygonscan.com/block/countdown',
         name: 'Polygon',
         chainId: ChainId.MATIC,
         factory: Matic063__factory
     },
     {
         contractAddress: '0x230917f8a262bF9f2C3959eC495b11D1B7E1aFfC',
+        countdownAddress: 'https://ftmscan.com/block/countdown',
         name: 'Fantom',
         chainId: ChainId.FANTOM,
         factory: Fantom230__factory
     },
     {
         contractAddress: '0xFf8e9AD7ab6daC78cba9Aaf74CFa7D96132233d4',
+        countdownAddress: 'https://ftmscan.com/block/countdown',
         name: 'Fantom',
         chainId: ChainId.FANTOM,
         factory: FantomFf8__factory
     },
     {
         contractAddress: '0x9a73AF4B606813d32197fE598236BdECA47Bf5a3',
+        countdownAddress: 'https://ftmscan.com/block/countdown',
         name: 'Fantom',
         chainId: ChainId.FANTOM,
         factory: Fantom9a7__factory
     },
     {
         contractAddress: '0x13b826B2f6317f761A9A7564053EC69B4318073f',
+        countdownAddress: 'https://snowtrace.io/block/countdown',
         name: 'Avalanche',
         chainId: ChainId.AVALANCHE,
         factory: Avalanche13b__factory
     },
     {
         contractAddress: '0xAB598434d0d0B1aDAf8311484A980d12169E035f',
+        countdownAddress: 'https://snowtrace.io/block/countdown',
         name: 'Avalanche',
         chainId: ChainId.AVALANCHE,
         factory: AvalancheAB5__factory

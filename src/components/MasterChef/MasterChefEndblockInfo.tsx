@@ -55,9 +55,8 @@ export const MasterChefEndblockInfo = ({
     })
 
     return (
-        <div className="mx-auto w-80">
-            <div
-                className="min-w-100 block rounded-lg bg-white p-6 shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-dm-tertiary dark:hover:bg-gray-700">
+        <div className="mx-auto w-80 cursor-pointer" onClick={() => window.open(`${networkData.countdownAddress}/${countdown}`)}>
+            <div className="min-w-100 block rounded-lg bg-white p-6 shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-dm-tertiary dark:hover:bg-gray-700">
                 <div className="flex place-content-evenly text-gray-700 dark:text-gray-400">
                     {chainIcon ? (
                         <img className="my-auto h-8 w-8 rounded" src={chainIcon} alt={`${chainName} Icon`}

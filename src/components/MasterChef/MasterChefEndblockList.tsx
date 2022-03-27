@@ -5,12 +5,12 @@ import React from "react";
 import {MasterChefEndblockInfo} from "./MasterChefEndblockInfo";
 import {EndblockData} from "../../Connectors/HubData";
 
-const MasterChefEndblockList = ({ networkData, logo }: { networkData: EndblockData[]; logo?: any }) => {
+const MasterChefEndblockList = ({ networkData }: {networkData: EndblockData[]}) => {
     return (
         <div
             className="min-w-100 m-6 block flex w-96 flex-col gap-y-4 rounded-lg bg-gray-50 p-6 shadow-md dark:border-gray-700 dark:bg-dm-secondary">
             <div className="flex h-28 text-blue">
-                {logo ? <img className="mx-auto my-auto max-h-full max-w-full" src={logo} alt="MasterChef Endblock logo"/> : null}
+                <p className="mx-auto my-auto text-8xl">&#128104;&#8205;&#127859;</p>
             </div>
             {networkData.map((network, key) => {
                 const connector = initializeConnector<Network>(
