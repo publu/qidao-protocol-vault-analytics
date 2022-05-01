@@ -1,9 +1,5 @@
 import React, { useEffect } from "react"
-import { initializeConnector } from '@web3-react/core'
-import { MetaMask } from "@web3-react/metamask"
-
-const [metaMask, hooks] = initializeConnector<MetaMask>((actions) => new MetaMask(actions))
-const { useIsActive, useProvider, useChainId, useIsActivating } = hooks
+import { metaMask, useIsActive, useProvider, useChainId, useIsActivating} from "../Connectors/Metamask"
 
 export const NetworkButton : React.FC<{title:string}> = ({children, title})=> {
     
@@ -16,7 +12,7 @@ export const NetworkButton : React.FC<{title:string}> = ({children, title})=> {
         metaMask.connectEagerly()
     }, [])
 
-    if (active === true) {
+    if (active) {
         return (<button onClick={() => metaMask.activate()} title={title}>
         <h3 style={{color: "white"}}>Connected</h3></button>)
     }

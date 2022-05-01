@@ -19,8 +19,8 @@ function App() {
     const isDarkMode = scheme === 'dark'
     return (
         <div className={'container mx-auto p-4'}>
+            <NetworkButton title="Connect to Metamask"></NetworkButton>
             <div className="flex justify-center flex-wrap">
-                <NetworkButton title="Connect to Metamask"></NetworkButton>
                 <HubList networkData={hubData} logo={isDarkMode ? LaoLogoDarkMode : LaoLogoLightMode} />
                 <NetworkList networkData={anySwapData} logo={isDarkMode ? MultichainLogoDarkMode : MultichainLogoLightMode} />
                 <AllBridgeChainList logo={AllBridgeChainLogo} />
