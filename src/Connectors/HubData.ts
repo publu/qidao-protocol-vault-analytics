@@ -26,13 +26,16 @@ export interface EndblockData extends AddressData {
 
 export const MaiAddresses: { [key: number]: string } = {
     0: '9mWRABuz2x6koTPCWiCPM49WUbcrNqGTHBV9T9k7y1o7', //SOL
+    10: '0xdfa46478f9e5ea86d57387849598dbfb2e964b02',
     25: '0x2Ae35c8E3D4bD57e8898FF7cd2bBff87166EF8cb',
     56: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
+    57: '0x2611fa1cae2a3e20ed47fb1b293437c14f41b00f',
     137: '0xa3fa99a148fa48d14ed51d610c367c61876997f1',
     100: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
     288: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
     1088: '0xdFA46478F9e5EA86d57387849598dbFB2e964b02',
     1285: '0xFb2019DfD635a03cfFF624D210AEe6AF2B00fC2C',
+    2001: '0xb9c8f0d3254007ee4b98970b94544e473cd610ec',
     4689: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
     42161: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
     42220: '0xB9C8F0d3254007eE4b98970b94544e473Cd610EC',
@@ -135,6 +138,21 @@ export const anySwapData: AddressData[] = [
         contractAddress: '0xD67de0e0a0Fd7b15dC8348Bb9BE742F3c5850454',
         name: 'Boba',
         chainId: ChainId.BOBA,
+    },
+    {
+        contractAddress: '0x9610b01aaa57ec026001f7ec5cface51bfea0ba6',
+        name: 'Milkomeda',
+        chainId: ChainId.MILKOMEDA,
+    },
+    {
+        contractAddress: '0x3028b4395f98777123c7da327010c40f3c7cc4ef',
+        name: 'Syscoin NEVM',
+        chainId: ChainId.SYSCOIN,
+    },
+    {
+        contractAddress: '0x65e66a61d0a8f1e686c2d6083ad611a10d84d97a',
+        name: 'Optimism',
+        chainId: ChainId.OPTIMISM,
     },
 ]
 

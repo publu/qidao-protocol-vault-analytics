@@ -13,6 +13,9 @@ import iotexNetworkIcon from '../imgs/logos/chains/iotex-network.png'
 import celoNetworkIcon from '../imgs/logos/chains/celo-network.png'
 import auroraNetworkIcon from '../imgs/logos/chains/aurora-network.png'
 import fantomNetworkIcon from '../imgs/logos/chains/fantom-network.jpg'
+import milkomedaNetworkIcon from '../imgs/logos/chains/milkomeda-network.png'
+import syscoinNetworkIcon from '../imgs/logos/chains/syscoin-network.png'
+import optimismNetworkIcon from '../imgs/logos/chains/optimism-network.png'
 
 const ETH: AddEthereumChainParameter['nativeCurrency'] = {
     name: 'Ether',
@@ -85,6 +88,18 @@ const FTM: AddEthereumChainParameter['nativeCurrency'] = {
     decimals: 18,
 }
 
+const MILKADA: AddEthereumChainParameter['nativeCurrency'] = {
+    name: 'MilkADA',
+    symbol: 'MilkADA',
+    decimals: 18
+}
+
+const SYS: AddEthereumChainParameter['nativeCurrency'] = {
+    name: 'Syscoin',
+    symbol: 'SYS',
+    decimals: 18
+}
+
 interface BasicChainInformation {
     urls: string[]
     name: string
@@ -123,9 +138,11 @@ export const ChainId = {
     ROPSTEN: 3,
     RINKEBY: 4,
     GORLI: 5,
+    OPTIMISM: 10,
     CRONOS: 25,
     KOVAN: 42,
     BSC: 56,
+    SYSCOIN: 57,
     BSC_TESTNET: 97,
     XDAI: 100,
     HECO: 128,
@@ -138,6 +155,7 @@ export const ChainId = {
     METIS: 1088,
     MOONRIVER: 1285,
     MOONBASE: 1287,
+    MILKOMEDA: 2001,
     IOTEX: 4689,
     ARBITRUM: 42161,
     CELO: 42220,
@@ -150,6 +168,13 @@ export const ChainId = {
 
 export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainInformation } = {
     1: { urls: ['https://cloudflare-eth.com'], name: 'Mainnet' },
+    10: {
+        urls: ['https://mainnet.optimism.io'],
+        name: 'Optimism',
+        nativeCurrency: ETH,
+        blockExplorerUrls: ['https://optimistic.etherscan.io/'],
+        iconUrls: [optimismNetworkIcon],
+    },
     25: {
         urls: ['https://evm-cronos.crypto.org'],
         name: 'Cronos',
@@ -163,6 +188,13 @@ export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainI
         nativeCurrency: BNB,
         blockExplorerUrls: ['https://bscscan.com/'],
         iconUrls: [bscNetworkIcon],
+    },
+    57: {
+        urls: ['https://rpc.syscoin.org'],
+        name: 'Syscoin Mainnet',
+        nativeCurrency: SYS,
+        blockExplorerUrls: ['https://explorer.syscoin.org/'],
+        iconUrls: [syscoinNetworkIcon],
     },
     100: {
         urls: ['https://rpc.gnosischain.com/'],
@@ -205,6 +237,13 @@ export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainI
         nativeCurrency: MOVR,
         blockExplorerUrls: ['https://moonriver.moonscan.io/'],
         iconUrls: [moonriverNetworkIcon],
+    },
+    2001: {
+        urls: ['https://rpc-mainnet-cardano-evm.c1.milkomeda.com'],
+        name: 'Milkomeda Cardano (C1)',
+        nativeCurrency: MILKADA,
+        blockExplorerUrls: ['https://explorer-mainnet-cardano-evm.c1.milkomeda.com'],
+        iconUrls: [milkomedaNetworkIcon],
     },
     4689: {
         urls: ['https://babel-api.mainnet.iotex.io'],
