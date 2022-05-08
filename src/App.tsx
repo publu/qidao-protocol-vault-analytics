@@ -10,8 +10,6 @@ import { useColorScheme } from 'use-color-scheme'
 import { AllBridgeChainList } from './components/allbridge/AllBridgeList'
 import NetworkList from './components/Network/NetworkList'
 import MasterChefEndblockList from "./components/MasterChef/MasterChefEndblockList"
-import { MetaMask } from "@web3-react/metamask"
-import { initializeConnector } from '@web3-react/core'
 import { NetworkButton } from './components/MetaMaskConnectButton'
 
 function App() {

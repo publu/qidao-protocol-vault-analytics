@@ -13,6 +13,7 @@ import { CrossChainHub__factory, ERC20__factory } from '../../contracts'
 import * as metaMaskConnector from '../../Connectors/Metamask'
 import { MetaMask } from "@web3-react/metamask"
 import { Web3Provider } from '@ethersproject/providers'
+import TokenModal from "../Modal";
 
 export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [Network, Web3ReactHooks, Web3ReactStore] }) => {
     const [n, hooks] = connector
@@ -131,6 +132,10 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                             </div>
                         )}
                     </div>
+                </div>
+                <div className="ml-auto flex flex-cols-[auto_1fr] pl-4">
+                    <TokenModal buttonTitle="Add New Token" active={active} provider={provider} chainId={chainId}/>
+                    <TokenModal buttonTitle="Change Limit" active={active} provider={provider} chainId={chainId}/>
                 </div>
             </div>
         </div>

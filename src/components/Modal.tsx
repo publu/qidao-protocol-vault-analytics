@@ -1,8 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import {Fragment, useState} from 'react'
 import AddTokenForm from "./AddTokenForm";
+import {ethers} from "ethers";
 
-export default function NewTokenModal() {
+
+interface ModalProps {
+  buttonTitle: string;
+  active: boolean;
+  provider: ethers.providers.Web3Provider | undefined
+  chainId: number | undefined
+}
+
+const TokenModal: React.FC<ModalProps> = ({ buttonTitle, active, provider, chainId}) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -18,10 +27,12 @@ export default function NewTokenModal() {
       <div className="inset-0 flex items-center justify-center">
         <button
           type="button"
+          title="Add New Token"
           onClick={openModal}
-          className="focus:outline-none rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="focus:outline-none rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white
+          hover:bg-opacity-30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
-          Add New Hub
+          {buttonTitle}
         </button>
       </div>
 
@@ -52,18 +63,8 @@ export default function NewTokenModal() {
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mt-2">
-                    <AddTokenForm />
+                    <AddTokenForm buttonTitle={buttonTitle} active={active} chainId={chainId} provider={provider}/>
                   </div>
-
-                  {/*<div className="mt-4">*/}
-                  {/*  <button*/}
-                  {/*    type="button"*/}
-                  {/*    className="focus:outline-none inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"*/}
-                  {/*    onClick={closeModal}*/}
-                  {/*  >*/}
-                  {/*    Close Popup*/}
-                  {/*  </button>*/}
-                  {/*</div>*/}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -73,3 +74,5 @@ export default function NewTokenModal() {
     </>
   )
 }
+
+export default TokenModal
