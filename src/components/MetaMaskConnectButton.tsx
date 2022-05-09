@@ -13,7 +13,9 @@ export const NetworkButton : React.FC<{title:string}> = ({children, title})=> {
     }, [])
 
     if (active) {
-        return (<button onClick={() => metaMask.activate()} title={title}>
+        return (<button className="bg-gray-700 hover:bg-gray-800 text-white font-bold
+    py-2 px-4 border border-blue-700 rounded"
+                        onClick={() => metaMask.activate()} title={title}>
         <h3 style={{color: "white"}}>Connected</h3></button>)
     }
 

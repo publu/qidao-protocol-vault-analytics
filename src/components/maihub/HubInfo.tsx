@@ -9,13 +9,14 @@ import MaiLogo from '../../imgs/logos/mimatic-red.png'
 import CelerLogo from '../../imgs/logos/celer.png'
 import RelayLogo from '../../imgs/logos/relay-icon.png'
 import { getAddChainParameters } from '../../Connectors/Chains'
-import { CrossChainHub__factory, ERC20__factory } from '../../contracts'
+import {CrossChainHub, CrossChainHub__factory, ERC20__factory} from '../../contracts'
 import * as metaMaskConnector from '../../Connectors/Metamask'
 import { MetaMask } from "@web3-react/metamask"
 import { Web3Provider } from '@ethersproject/providers'
 import TokenModal from "../Modal";
 
 export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [Network, Web3ReactHooks, Web3ReactStore] }) => {
+    const [hubContract, setHubContract] = useState<CrossChainHub | undefined>();
     const [n, hooks] = connector
     const { useIsActive: a, useProvider: p , useChainId: c} = hooks
     let network: Network | MetaMask
@@ -93,7 +94,9 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
 
         fetchHubBalance().then()
     })
-
+    if (hubContract) {
+        setHubContract(hubContract)
+    }
     return (
         <div>
         <div className="mx-auto w-80">
@@ -134,8 +137,8 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                     </div>
                 </div>
                 <div className="ml-auto flex flex-cols-[auto_1fr] pl-4">
-                    <TokenModal buttonTitle="Add New Token" active={active} provider={provider} chainId={chainId}/>
-                    <TokenModal buttonTitle="Change Limit" active={active} provider={provider} chainId={chainId}/>
+                    <TokenModal buttonTitle="Add New Token" hubContract={hubContract}/>
+                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract}/>
                 </div>
             </div>
         </div>

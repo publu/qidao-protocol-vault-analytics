@@ -1,17 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react'
 import {Fragment, useState} from 'react'
 import AddTokenForm from "./AddTokenForm";
-import {ethers} from "ethers";
+import {CrossChainHub} from "../contracts";
 
 
 interface ModalProps {
   buttonTitle: string;
-  active: boolean;
-  provider: ethers.providers.Web3Provider | undefined
-  chainId: number | undefined
+  hubContract: CrossChainHub | undefined
 }
 
-const TokenModal: React.FC<ModalProps> = ({ buttonTitle, active, provider, chainId}) => {
+const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract}) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -63,7 +61,7 @@ const TokenModal: React.FC<ModalProps> = ({ buttonTitle, active, provider, chain
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mt-2">
-                    <AddTokenForm buttonTitle={buttonTitle} active={active} chainId={chainId} provider={provider}/>
+                    <AddTokenForm buttonTitle={buttonTitle} hubContract={hubContract}/>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
