@@ -71,6 +71,7 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                 const maiContract = ERC20__factory.connect(MaiAddresses[chainId], provider)
                 const hubContract = CrossChainHub__factory.connect(hubData.contractAddress, provider)
                 let balance: ethers.BigNumber = await maiContract.balanceOf(hubContract.address)
+                setHubContract(hubContract)
 
                 setBalance(formatAmount(balance))
                 if (hubData.celarToken) {
@@ -93,10 +94,9 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
         }
 
         fetchHubBalance().then()
-    })
-    if (hubContract) {
-        setHubContract(hubContract)
-    }
+    }, [active, chainId, hubData.celarToken, hubData.chainId, hubData.contractAddress, hubData.relayChainToken,
+        isConnected, network, provider])
+
     return (
         <div>
         <div className="mx-auto w-80">
@@ -137,8 +137,8 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                     </div>
                 </div>
                 <div className="ml-auto flex flex-cols-[auto_1fr] pl-4">
-                    <TokenModal buttonTitle="Add New Token" hubContract={hubContract}/>
-                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract}/>
+                    <TokenModal buttonTitle="Add New Token" hubContract={hubContract} contractFunction={"ADD_TOKEN"}/>
+                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"}/>
                 </div>
             </div>
         </div>

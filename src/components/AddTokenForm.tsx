@@ -2,45 +2,39 @@ import React, {ChangeEvent, useState} from 'react';
 import {useIsActive, useProvider, useChainId} from "../Connectors/Metamask";
 import {CrossChainHub} from "../contracts";
 
+export type ButtonType = "ADD_TOKEN" | "CHANGE_LIMIT"
+
 interface TokenFormProps {
     buttonTitle: string
     hubContract: CrossChainHub | undefined
+    buttonType: ButtonType
 }
 
-const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract}) => {
-   
+const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonType}) => {
+
     const [tokenAddress, setTokenAddress] = useState('')
     const [limit, setLimit] = useState(0)
-    let metaMaskIsActive= useIsActive()
+    let metaMaskIsActive = useIsActive()
     let chainId = useChainId()
-    let provider = useProvider()
+    let metamaskProvider = useProvider()
 
-    const onClick = () => {
-        if (buttonTitle === "Add New Token") {
-            if (metaMaskIsActive && chainId && provider) {
-                hubContract?.addAsset(tokenAddress)
-                console.log("Adding New Token")
-                console.log(chainId)
-                console.log(provider)
-            } else {
-                console.log(metaMaskIsActive)
-                console.log(chainId)
-                console.log(provider)
-                alert("Cannot connect to network")
+    const onClick = async () => {
+        if (metaMaskIsActive && chainId && metamaskProvider) {
+            let signerHubContract = hubContract?.connect(metamaskProvider.getSigner())
+            if(signerHubContract) {
+                if (buttonType === "ADD_TOKEN") {
+                    const tx = await signerHubContract.addAsset(tokenAddress)
+                    await tx.wait(1)
+                } else if (buttonType === "CHANGE_LIMIT") {
+                    const tx = await signerHubContract.setLimit(tokenAddress, limit)
+                    await tx.wait(1)
+                } else {
+                    alert("Error: Unknown Button")
+                }
             }
-        } else if (buttonTitle === "Change Limit") {
-            if (metaMaskIsActive && chainId && provider) {
 
-                hubContract?.setLimit(tokenAddress, limit)
-                console.log("Changing Limit")
-            } else {
-                console.log(metaMaskIsActive)
-                console.log(chainId)
-                console.log(provider)
-                alert("Cannot connect to network")
-            }
         } else {
-            alert("Error: Unknown Button")
+            alert("Cannot connect to network")
         }
 
         setTokenAddress('');
@@ -137,6 +131,6 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract}) => {
         return null
     }
 
-  }
+}
 
-  export default AddTokenForm
+export default AddTokenForm
