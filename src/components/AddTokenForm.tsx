@@ -44,7 +44,7 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, butto
     const handleTokenChange = (e: ChangeEvent<HTMLInputElement>) => setTokenAddress(e.target.value)
     const handleLimitChange = (e: ChangeEvent<HTMLInputElement>) => setLimit(parseFloat(e.target.value))
 
-    if (buttonTitle === "Add New Token") {
+    if (buttonType === "ADD_TOKEN") {
         return (
             <form className="w-full max-w-sm">
                 <div className="md:flex md:items-center mb-6">
@@ -76,7 +76,7 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, butto
                 </div>
             </form>
         );
-    } else if (buttonTitle === "Change Limit") {
+    } else if (buttonType === "CHANGE_LIMIT") {
         return (
             <form className="w-full max-w-sm">
                 <div className="md:flex md:items-center mb-6">
