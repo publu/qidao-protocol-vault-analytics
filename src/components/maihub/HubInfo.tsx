@@ -9,14 +9,36 @@ import MaiLogo from '../../imgs/logos/mimatic-red.png'
 import CelerLogo from '../../imgs/logos/celer.png'
 import RelayLogo from '../../imgs/logos/relay-icon.png'
 import { getAddChainParameters } from '../../Connectors/Chains'
-import { CrossChainHub__factory, ERC20__factory } from '../../contracts'
+import {CrossChainHub, CrossChainHub__factory, ERC20__factory} from '../../contracts'
+import * as metaMaskConnector from '../../Connectors/Metamask'
+import { MetaMask } from "@web3-react/metamask"
+import { Web3Provider } from '@ethersproject/providers'
+import TokenModal from "../Modal";
 
 export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [Network, Web3ReactHooks, Web3ReactStore] }) => {
-    const [network, hooks] = connector
-    const { useIsActive, useProvider, useChainId } = hooks
-    const active = useIsActive()
-    const provider = useProvider()
-    const chainId = useChainId()
+    const [hubContract, setHubContract] = useState<CrossChainHub | undefined>();
+    const [n, hooks] = connector
+    const { useIsActive: a, useProvider: p , useChainId: c} = hooks
+    let network: Network | MetaMask
+    let connectorChainId = c()
+    let metaMaskChainId = metaMaskConnector.useChainId()
+    let active: boolean 
+    let provider: Web3Provider | undefined
+    let chainId: number | undefined
+
+    if (metaMaskConnector.useIsActive() && connectorChainId === metaMaskChainId) {
+        active = metaMaskConnector.useIsActive()
+        provider = metaMaskConnector.useProvider()
+        chainId = metaMaskConnector.useChainId()
+        network = metaMaskConnector.metaMask
+        
+    } else {
+        active = a()
+        provider = p()
+        chainId = c()
+        network = n
+    }
+    
     const [hubBalance, setBalance] = useState('0')
     const [celerBalance, setCelerBalance] = useState<string>()
     const [celerLimit, setCelerLimit] = useState<string>()
@@ -49,6 +71,7 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                 const maiContract = ERC20__factory.connect(MaiAddresses[chainId], provider)
                 const hubContract = CrossChainHub__factory.connect(hubData.contractAddress, provider)
                 let balance: ethers.BigNumber = await maiContract.balanceOf(hubContract.address)
+                setHubContract(hubContract)
 
                 setBalance(formatAmount(balance))
                 if (hubData.celarToken) {
@@ -71,9 +94,11 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
         }
 
         fetchHubBalance().then()
-    })
+    }, [active, chainId, hubData.celarToken, hubData.chainId, hubData.contractAddress, hubData.relayChainToken,
+        isConnected, network, provider])
 
     return (
+        <div>
         <div className="mx-auto w-80">
             <div className="min-w-100 block rounded-lg bg-white p-6 shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-dm-tertiary dark:hover:bg-gray-700">
                 <div className="flex place-content-evenly text-gray-700 dark:text-gray-400">
@@ -111,7 +136,13 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                         )}
                     </div>
                 </div>
+                <div className="ml-auto flex flex-cols-[auto_1fr] pl-4">
+                    <TokenModal buttonTitle="Add New Token" hubContract={hubContract} contractFunction={"ADD_TOKEN"}/>
+                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"}/>
+                </div>
             </div>
         </div>
+        </div>
+
     )
 }
