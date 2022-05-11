@@ -8,9 +8,10 @@ interface TokenFormProps {
     buttonTitle: string
     hubContract: CrossChainHub | undefined
     buttonType: ButtonType
+    tokenToChange: string | undefined
 }
 
-const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonType}) => {
+const TokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonType, tokenToChange}) => {
 
     const [tokenAddress, setTokenAddress] = useState('')
     const [limit, setLimit] = useState(0)
@@ -26,7 +27,11 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, butto
                     const tx = await signerHubContract.addAsset(tokenAddress)
                     await tx.wait(1)
                 } else if (buttonType === "CHANGE_LIMIT") {
-                    const tx = await signerHubContract.setLimit(tokenAddress, limit)
+                    if (!tokenToChange) {
+                        alert("Error: No token provided")
+                        return;
+                    }
+                    const tx = await signerHubContract.setLimit(tokenToChange, limit)
                     await tx.wait(1)
                 } else {
                     alert("Error: Unknown Button")
@@ -82,23 +87,6 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, butto
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
                         <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                               htmlFor="inline-token-name">
-                            Token Address
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        <input
-                            type="text"
-                            name="tokenAddress"
-                            id="inline-token-address"
-                            value={tokenAddress}
-                            onChange={handleTokenChange}
-                        />
-                    </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                htmlFor="inline-hub-limit">
                             Limit
                         </label>
@@ -133,4 +121,4 @@ const AddTokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, butto
 
 }
 
-export default AddTokenForm
+export default TokenForm

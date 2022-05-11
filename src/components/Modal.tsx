@@ -1,16 +1,17 @@
 import {Dialog, Transition} from '@headlessui/react'
 import {Fragment, useState} from 'react'
-import AddTokenForm, {ButtonType} from "./AddTokenForm";
+import TokenForm, {ButtonType} from "./TokenForm";
 import {CrossChainHub} from "../contracts";
 
 
 interface ModalProps {
   buttonTitle: string;
-  hubContract: CrossChainHub | undefined
-  contractFunction: ButtonType
+  hubContract: CrossChainHub | undefined;
+  contractFunction: ButtonType;
+  tokenToChange: string | undefined;
 }
 
-const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFunction}) => {
+const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFunction, tokenToChange}) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -62,7 +63,7 @@ const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFu
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mt-2">
-                    <AddTokenForm buttonTitle={buttonTitle} hubContract={hubContract} buttonType={contractFunction}/>
+                    <TokenForm buttonTitle={buttonTitle} hubContract={hubContract} buttonType={contractFunction} tokenToChange={tokenToChange}/>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
