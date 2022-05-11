@@ -137,7 +137,7 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                                 <span className="my-auto py-2 px-1" />
                                 <p className="font-normal text-gray-700 dark:text-gray-400">Limit: {relayLimit}</p>
                                 <div className="flex justify-start">
-                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"} tokenToChange={hubData.celarToken}/>
+                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"} tokenToChange={hubData.relayChainToken}/>
                                 </div>
                             </div>
                         )}
