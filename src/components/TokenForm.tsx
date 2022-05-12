@@ -31,14 +31,14 @@ const TokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonTy
             let signerHubContract = hubContract?.connect(metamaskProvider.getSigner())
             if(signerHubContract && chainId === hubChainId) {
                 if (buttonType === "ADD_TOKEN") {
-                    const tx = await signerHubContract.addAsset(tokenAddress, {gasLimit: 5000})
+                    const tx = await signerHubContract.addAsset(tokenAddress)
                     await tx.wait(1)
                 } else if (buttonType === "CHANGE_LIMIT") {
                     if (!tokenToChange) {
                         alert("Error: No token provided")
                         return;
                     }
-                    const tx = await signerHubContract.setLimit(tokenToChange, limit, {gasLimit: 5000})
+                    const tx = await signerHubContract.setLimit(tokenToChange, limit)
                     await tx.wait(1)
                 } else {
                     alert("Error: Unknown Button")
