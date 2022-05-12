@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
-import { formatAmount } from '../../utils/utils'
-import { HubData, MaiAddresses } from '../../Connectors/HubData'
-import { Network } from '@web3-react/network'
-import { Web3ReactStore } from '@web3-react/types'
-import { Web3ReactHooks } from '@web3-react/core'
+import React, {useEffect, useState} from 'react'
+import {ethers} from 'ethers'
+import {formatAmount} from '../../utils/utils'
+import {HubData, MaiAddresses} from '../../Connectors/HubData'
+import {Network} from '@web3-react/network'
+import {Web3ReactStore} from '@web3-react/types'
+import {Web3ReactHooks} from '@web3-react/core'
 import MaiLogo from '../../imgs/logos/mimatic-red.png'
 import CelerLogo from '../../imgs/logos/celer.png'
 import RelayLogo from '../../imgs/logos/relay-icon.png'
-import { getAddChainParameters } from '../../Connectors/Chains'
+import {getAddChainParameters} from '../../Connectors/Chains'
 import {CrossChainHub, CrossChainHub__factory, ERC20__factory} from '../../contracts'
 import * as metaMaskConnector from '../../Connectors/Metamask'
-import { MetaMask } from "@web3-react/metamask"
-import { Web3Provider } from '@ethersproject/providers'
+import {MetaMask} from "@web3-react/metamask"
+import {Web3Provider} from '@ethersproject/providers'
 import TokenModal from "../Modal";
 
 export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [Network, Web3ReactHooks, Web3ReactStore] }) => {
@@ -101,7 +101,8 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
         <div>
         <div className="mx-auto w-80">
             <div className="min-w-100 block rounded-lg bg-white p-6 shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-dm-tertiary dark:hover:bg-gray-700">
-                <TokenModal buttonTitle="Add New Token" hubContract={hubContract} contractFunction={"ADD_TOKEN"} tokenToChange={''}/>
+                <TokenModal buttonTitle="Add New Token" hubContract={hubContract} contractFunction={"ADD_TOKEN"}
+                            tokenToChange={''} hubChainId={hubData.chainId}/>
                 <div className="flex place-content-evenly text-gray-700 dark:text-gray-400">
                     {chainIcon ? (
                         <img className="my-auto h-8 w-8 rounded" src={chainIcon} alt={`${chainName} Icon`} title={`${chainName} Icon`} />
@@ -116,28 +117,38 @@ export const HubInfo = ({ hubData, connector }: { hubData: HubData; connector: [
                             <p className="font-normal text-gray-700 dark:text-gray-400">Balance: {hubBalance}</p>
                         </div>
                         {hubData.celarToken && (
-                            <div className="ml-auto flex grid grid-cols-1 pl-4">
+                            <div>
+                                <div className="ml-auto grid grid-cols-[auto_1fr] pl-4">
                                 <span className="my-auto py-2 px-1">
-                                    <img src={CelerLogo} alt="Mai Token Icon" className="-mb-1 h-5" />
+                                    <img src={CelerLogo} alt="Mai Token Icon" className="-mb-1 h-5"/>
                                 </span>
-                                <p className="font-normal text-gray-700 dark:text-gray-400">Balance: {celerBalance}</p>
-                                <span className="my-auto py-2 px-1" />
-                                <p className="font-normal text-gray-700 dark:text-gray-400">Limit: {celerLimit}</p>
-                                <div className="flex justify-start">
-                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"} tokenToChange={hubData.celarToken}/>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400">Balance: {celerBalance}</p>
+                                    <span className="my-auto py-2 px-1"/>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400">Limit: {celerLimit}</p>
+                                </div>
+                                <div className="flex justify-center">
+                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract}
+                                                contractFunction={"CHANGE_LIMIT"}
+                                                tokenToChange={hubData.celarToken}
+                                    hubChainId={hubData.chainId}/>
                                 </div>
                             </div>
                         )}
                         {hubData.relayChainToken && (
-                            <div className="ml-auto flex grid grid-cols-1 pl-4">
+                            <div>
+                                <div className="ml-auto grid grid-cols-[auto_1fr] pl-4">
                                 <span className="my-auto py-2 px-1">
-                                    <img src={RelayLogo} alt="Mai Token Icon" className="-mb-1 h-5" />
+                                    <img src={RelayLogo} alt="Mai Token Icon" className="-mb-1 h-5"/>
                                 </span>
-                                <p className="font-normal text-gray-700 dark:text-gray-400">Balance: {relayBalance}</p>
-                                <span className="my-auto py-2 px-1" />
-                                <p className="font-normal text-gray-700 dark:text-gray-400">Limit: {relayLimit}</p>
-                                <div className="flex justify-start">
-                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract} contractFunction={"CHANGE_LIMIT"} tokenToChange={hubData.relayChainToken}/>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400">Balance: {relayBalance}</p>
+                                    <span className="my-auto py-2 px-1"/>
+                                    <p className="font-normal text-gray-700 dark:text-gray-400">Limit: {relayLimit}</p>
+                                </div>
+                                <div className="flex justify-center">
+                                    <TokenModal buttonTitle="Change Limit" hubContract={hubContract}
+                                                contractFunction={"CHANGE_LIMIT"}
+                                                tokenToChange={hubData.relayChainToken}
+                                    hubChainId={hubData.chainId}/>
                                 </div>
                             </div>
                         )}

@@ -9,9 +9,10 @@ interface ModalProps {
   hubContract: CrossChainHub | undefined;
   contractFunction: ButtonType;
   tokenToChange: string | undefined;
+  hubChainId: number;
 }
 
-const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFunction, tokenToChange}) => {
+const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFunction, tokenToChange, hubChainId}) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -63,7 +64,8 @@ const TokenModal: React.FC<ModalProps> = ({ buttonTitle, hubContract, contractFu
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mt-2">
-                    <TokenForm buttonTitle={buttonTitle} hubContract={hubContract} buttonType={contractFunction} tokenToChange={tokenToChange}/>
+                    <TokenForm buttonTitle={buttonTitle} hubContract={hubContract}
+                               buttonType={contractFunction} tokenToChange={tokenToChange} hubChainId = {hubChainId}/>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

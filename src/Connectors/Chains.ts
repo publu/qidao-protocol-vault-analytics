@@ -1,4 +1,4 @@
-import type { AddEthereumChainParameter } from '@web3-react/types'
+import type {AddEthereumChainParameter} from '@web3-react/types'
 import arbitrumNetworkIcon from '../imgs/logos/chains/arbitrum-network.jpg'
 import avalancheNetworkIcon from '../imgs/logos/chains/avalanche-network.jpg'
 import bscNetworkIcon from '../imgs/logos/chains/bsc-network.jpg'
@@ -123,6 +123,7 @@ export const ChainId = {
     ROPSTEN: 3,
     RINKEBY: 4,
     GORLI: 5,
+    OPTIMISM: 10,
     CRONOS: 25,
     KOVAN: 42,
     BSC: 56,
@@ -146,7 +147,9 @@ export const ChainId = {
     AURORA: 1313161554,
     HARMONY: 1666600000,
     HARMONY_TESTNET: 1666700000,
-}
+} as const
+
+export type ChainKey = typeof ChainId[keyof typeof ChainId]
 
 export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainInformation } = {
     1: { urls: ['https://cloudflare-eth.com'], name: 'Mainnet' },

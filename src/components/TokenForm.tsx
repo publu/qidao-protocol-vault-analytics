@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
-import {useIsActive, useProvider, useChainId} from "../Connectors/Metamask";
+import {useAccount, useChainId, useIsActive, useProvider} from "../Connectors/Metamask";
 import {CrossChainHub} from "../contracts";
+import {addOrSwapChain} from "../utils/utils";
+import {ChainKey} from "../Connectors/Chains";
 
 export type ButtonType = "ADD_TOKEN" | "CHANGE_LIMIT"
 
@@ -9,29 +11,34 @@ interface TokenFormProps {
     hubContract: CrossChainHub | undefined
     buttonType: ButtonType
     tokenToChange: string | undefined
+    hubChainId: number
 }
 
-const TokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonType, tokenToChange}) => {
+const TokenForm: React.FC<TokenFormProps> = ({buttonTitle, hubContract, buttonType, tokenToChange, hubChainId}) => {
 
     const [tokenAddress, setTokenAddress] = useState('')
     const [limit, setLimit] = useState(0)
     let metaMaskIsActive = useIsActive()
     let chainId = useChainId()
     let metamaskProvider = useProvider()
+    let account = useAccount()
 
     const onClick = async () => {
         if (metaMaskIsActive && chainId && metamaskProvider) {
+            if (account && !(chainId === hubChainId)) {
+                await addOrSwapChain(metamaskProvider, account, hubChainId as ChainKey)
+            }
             let signerHubContract = hubContract?.connect(metamaskProvider.getSigner())
-            if(signerHubContract) {
+            if(signerHubContract && chainId === hubChainId) {
                 if (buttonType === "ADD_TOKEN") {
-                    const tx = await signerHubContract.addAsset(tokenAddress)
+                    const tx = await signerHubContract.addAsset(tokenAddress, {gasLimit: 5000})
                     await tx.wait(1)
                 } else if (buttonType === "CHANGE_LIMIT") {
                     if (!tokenToChange) {
                         alert("Error: No token provided")
                         return;
                     }
-                    const tx = await signerHubContract.setLimit(tokenToChange, limit)
+                    const tx = await signerHubContract.setLimit(tokenToChange, limit, {gasLimit: 5000})
                     await tx.wait(1)
                 } else {
                     alert("Error: Unknown Button")
