@@ -37,7 +37,6 @@ export const NetworkInfo = ({
     }
 
     useEffect(() => {
-        console.log(networkData)
         async function fetchHubBalance() {
             if (!isConnected) {
                 try {

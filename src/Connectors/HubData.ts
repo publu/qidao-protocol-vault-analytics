@@ -1,7 +1,9 @@
-import { ChainId } from './Chains'
+import {ChainId} from './Chains'
 import {
-    Avalanche13b__factory, AvalancheAB5__factory,
-    Fantom230__factory, Fantom9a7__factory,
+    Avalanche13b__factory,
+    AvalancheAB5__factory,
+    Fantom230__factory,
+    Fantom9a7__factory,
     FantomFf8__factory,
     Matic063__factory,
     Matic07C__factory,
