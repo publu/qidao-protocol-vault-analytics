@@ -46,6 +46,7 @@ export const NetworkInfo = ({
                     console.warn(ex)
                 }
             }
+
             if (active && provider && chainId) {
                 const maiContract = ERC20__factory.connect(MaiAddresses[chainId], provider)
                 let balance: ethers.BigNumber = await maiContract.balanceOf(contractAddress)
